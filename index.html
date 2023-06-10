@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: rgb(95, 158, 160);
+    }
+    .card {
+      margin: 0 auto;
+      cursor: pointer;
+      margin-top: 10%;
+      width: 300px;
+      height: 400px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px -8px, rgba(0, 0, 0, 0.05) 0px 9px 28px, rgba(0, 0, 0, 0.03) 0px 12px 48px 16px;
+    }
+
+    .head {
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .romaji{
+      display: flex;
+      font-size: 28px;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      opacity: 0;
+    }
+
+    .main{
+      display: flex;
+    }
+
+    .box {
+      flex: 1;
+      text-align: center;
+    }
+
+    .title {
+      font-family: "STKaiti","KaiTi";
+      color: #333;
+      font-size: 18px;
+      padding: 20px 0;
+    }
+
+    .content{
+      font-size: 100px;
+      font-family: "STKaiti","KaiTi";
+      opacity: 0;
+      height: 100px;
+    }
+
+
+    .panel{
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 20px 40px;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: rgb(62, 137, 140);
+      display: inline-block;
+      color: #eee;
+    }
+
+    .btn:hover {
+      color: #e9e9e9;
+      background: rgb(66, 143, 147);
+    }
+ 
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <div class="title">罗马字</div>
+      <div class="romaji">
+      </div>
+    </div>
+ 
+
+    <div class="main">
+      <div class="box">
+        <div class="title">平假名</div>
+        <div class="content hiragana">
+        </div>
+      </div>
+
+
+      <div class="box">
+        <div class="title">片假名</div>
+        <div class="content katakana">
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="btn">
+      显示答案
+    </div>
+  </div>
+
+
+</body>
+<script>
+
+  const a = {
+    hiragana: 'あ',
+    katakana:'ア',
+    romaji: 'a'
+  }
+
+  const i = {
+    hiragana: 'い',
+    katakana:'イ',
+    romaji: 'i'
+  }
+
+  const u = {
+    hiragana: 'う',
+    katakana:'ウ',
+    romaji: 'u',
+  }
+  const e = {
+    hiragana: 'え',
+    katakana:'エ',
+    romaji: 'e',
+  }
+  const o = {
+    hiragana: 'お',
+    katakana:'オ',
+    romaji:'o',
+  }
+  const ka = {
+    hiragana: 'か',
+    katakana:'カ',
+    romaji:'ka',
+  }
+
+  const ki = {
+    hiragana: 'き',
+    katakana:'キ',
+    romaji:'ki',
+  }
+  const ku = {
+    hiragana:'く',
+    katakana:'ク',
+    romaji:'ku',
+  }
+  const ke = {
+    hiragana:'け',
+    katakana:'ケ',
+    romaji:'ke',
+  }
+  const ko = {
+    hiragana:'こ',
+    katakana:'コ',
+    romaji:'ko',
+  }
+  const sa = {
+    hiragana:'さ',
+    katakana:'サ',
+    romaji:'sa',
+  }
+  const shi = {
+    hiragana:'し',
+    katakana:'シ',
+    romaji:'shi',
+  }
+  const su = {
+    hiragana:'す',
+    katakana:'ス',
+    romaji:'su',
+  }
+  const se = {
+    hiragana:'せ',
+    katakana:'セ',
+    romaji:'se',
+  }
+  const so = {
+    hiragana:'そ',
+    katakana:'ソ',
+    romaji:'so',
+  }
+  const ta = {
+    hiragana:'た',
+    katakana:'タ',
+    romaji:'ta',
+  }
+  const chi = {
+    hiragana:'ち',
+    katakana:'チ',
+    romaji:'chi',
+  }
+  const tsu = {
+    hiragana:'つ',
+    katakana:'ツ',
+    romaji:'tsu',
+  }
+  const te = {
+    hiragana:'て',
+    katakana:'テ',
+    romaji:'te',
+  }
+
+  const to = {
+    hiragana:'と',
+    katakana:'ト',
+    romaji:'to',
+  }
+  const na = {
+    hiragana:'な',
+    katakana:'ナ',
+    romaji:'na',
+  }
+  const ni = {
+    hiragana:'に',
+    katakana:'ニ',
+    romaji:'ni',
+  }
+  const nu = {
+    hiragana:'ぬ',
+    katakana:'ヌ',
+    romaji:'nu',
+  }
+  const ne = {
+    hiragana:'ね',
+    katakana:'ネ',
+    romaji:'ne',
+  }
+  const no = {
+    hiragana:'の',
+    katakana:'ノ',
+    romaji:'no',
+  }
+
+
+  const ha = {
+    hiragana:'は',
+    katakana:'ハ',
+    romaji:'ha',
+  }
+  const hi = {
+    hiragana:'ひ',
+    katakana:'ヒ',
+    romaji:'hi',
+  }
+  const fu = {
+    hiragana:'ふ',
+    katakana:'フ',
+    romaji:'fu',
+  }
+  const he = {
+    hiragana:'へ',
+    katakana:'ヘ',
+    romaji:'he',
+  }
+  const ho = {
+    hiragana:'ほ',
+    katakana:'ホ',
+    romaji:'ho',
+  }
+
+  const ma = {
+    hiragana:'ま',
+    katakana:'マ',
+    romaji:'ma',
+  }
+  const mi = {
+    hiragana:'み',
+    katakana:'ミ',
+    romaji:'mi',
+  }
+  const mu = {
+    hiragana:'む',
+    katakana:'ム',
+    romaji:'mu',
+  }
+  const me = {
+    hiragana:'め',
+    katakana:'メ',
+    romaji:'me',
+  }
+  const mo = {
+    hiragana:'も',
+    katakana:'モ',
+    romaji:'mo',
+  }
+
+
+
+
+
+
+  const ya = {
+    hiragana:'や',
+    katakana:'ヤ',
+    romaji:'ya',
+  }
+  const yu = {
+    hiragana:'ゆ',
+    katakana:'ユ',
+    romaji:'yu',
+  }
+  const yo = {
+    hiragana:'よ',
+    katakana:'ヨ',
+    romaji:'yo',
+  }
+ 
+  const ra = {
+    hiragana:'ら',
+    katakana:'ラ',
+    romaji:'ra',
+  }
+  const ri = {
+    hiragana:'り',
+    katakana:'リ',
+    romaji:'ri',
+  }
+  const ru = {
+    hiragana:'る',
+    katakana:'ル',
+    romaji:'ru',
+  }
+  const re = {
+    hiragana:'れ',
+    katakana:'レ',
+    romaji:'re',
+  }
+  const ro = {
+    hiragana:'ろ',
+    katakana:'ロ',
+    romaji:'ro',
+  }
+
+
+  const wa = {
+    hiragana:'わ',
+    katakana:'ワ',
+    romaji:'wa',
+  }
+  const wo = {
+    hiragana:'を',
+    katakana:'ヲ',
+    romaji:'wo',
+  }
+
+
+
+  const n = {
+    hiragana:'ん',
+    katakana:'ン',
+    romaji:'n',
+  }
+  const ga = {
+    hiragana:'が',
+    katakana:'ガ',
+    romaji:'ga',
+  }
+  const gi = {
+    hiragana:'ぎ',
+    katakana:'ギ',
+    romaji:'gi',
+  }
+  const gu = {
+    hiragana:'ぐ',
+    katakana:'グ',
+    romaji:'gu',
+  }
+  const ge = {
+    hiragana:'げ',
+    katakana:'ゲ',
+    romaji:'ge',
+  }
+  const go = {
+    hiragana:'ご',
+    katakana:'ゴ',
+    romaji:'go',
+  }
+
+
+
+  const za = {
+    hiragana:'ざ',
+    katakana:'ザ',
+    romaji:'za',
+  }
+  const zi = {
+    hiragana:'じ',
+    katakana:'ジ',
+    romaji:'ji',
+  }
+  const zu = {
+    hiragana:'ず',
+    katakana:'ズ',
+    romaji:'zu',
+  }
+  const ze = {
+    hiragana:'ぜ',
+    katakana:'ゼ',
+    romaji:'ze',
+  }
+  const zo = {
+    hiragana:'ぞ',
+    katakana:'ゾ',
+    romaji:'zo',
+  }
+
+  const da = {
+    hiragana:'だ',
+    katakana:'ダ',
+    romaji:'da',
+  }
+  const di = {
+    hiragana:'ぢ',
+    katakana:'ヂ',
+    romaji:'ji',
+  }
+  const du = {
+    hiragana:'づ',
+    katakana:'ヅ',
+    romaji:'zu',
+  }
+  const de = {
+    hiragana:'で',
+    katakana:'デ',
+    romaji:'de',
+  }
+  const do_ = {
+    hiragana:'ど',
+    katakana:'ド',
+    romaji:'do',
+  }
+
+  const ba = {
+    hiragana:'ば',
+    katakana:'バ',
+    romaji:'ba',
+  }
+  const bi = {
+    hiragana:'び',
+    katakana:'ビ',
+    romaji:'bi',
+  }
+  const bu = {
+    hiragana:'ぶ',
+    katakana:'ブ',
+    romaji:'bu',
+  }
+  const be = {
+    hiragana:'べ',
+    katakana:'ベ',
+    romaji:'be',
+  }
+  const bo = {
+    hiragana:'ぼ',
+    katakana:'ボ',
+    romaji:'bo',
+  }
+
+  const pa = {
+    hiragana:'ぱ',
+    katakana:'パ',
+    romaji:'pa',
+  }
+  const pi = {
+    hiragana:'ぴ',
+    katakana:'ピ',
+    romaji:'pi',
+  }
+  const pu = {
+    hiragana:'ぷ',
+    katakana:'プ',
+    romaji:'pu',
+  }
+  const pe = {
+    hiragana:'ぺ',
+    katakana:'ペ',
+    romaji:'pe',
+  }
+  const po = {
+    hiragana:'ぽ',
+    katakana:'ポ',
+    romaji:'po'
+  }
+
+  const arr = [
+    a,
+i,
+u,
+e,
+o,
+ka,
+ki,
+ku,
+ke,
+ko,
+sa,
+shi,
+su,
+se,
+so,
+ta,
+chi,
+tsu,
+te,
+to,
+na,
+ni,
+nu,
+ne,
+no,
+ha,
+hi,
+fu,
+he,
+ho,
+ma,
+mi,
+mu,
+me,
+mo,
+ya,
+yu,
+yo,
+ra,
+ri,
+ru,
+re,
+ro,
+wa,
+wo,
+n,
+ga,
+gi,
+gu,
+ge,
+go,
+za,
+zi,
+zu,
+ze,
+zo,
+da,
+di,
+du,
+de,
+do_,
+ba,
+bi,
+bu,
+be,
+bo,
+pa,
+pi,
+pu,
+pe,
+po]
+
+const hiraganaDom = document.querySelector('.hiragana')
+const katakanaDom = document.querySelector('.katakana')
+const romajiDom = document.querySelector('.romaji')
+
+const DOM_MAP = {
+  hiragana: hiraganaDom,
+  katakana: katakanaDom,
+  romaji: romajiDom,
+}
+
+const propArr = ['hiragana', 'katakana', 'romaji']
+
+
+function refresh() {
+  const _random = Math.floor(Math.random() * arr.length)
+
+  const obj = arr[_random]
+
+  const curProp = propArr[Math.floor(Math.random() * 3)]
+
+  propArr.forEach(item => {
+    const _dom = DOM_MAP[item]
+    _dom.style.opacity = 0
+    _dom.innerText = obj[item]
+  })
+
+  DOM_MAP[curProp].style.opacity = 1
+  DOM_MAP[curProp].innerText = obj[curProp]
+}
+
+
+const btn = document.querySelector('.btn')
+
+btn.addEventListener('click', e => {
+  propArr.forEach(item => {
+    DOM_MAP[item].style.opacity = 1
+  })
+})
+
+const card = document.querySelector('.card')
+
+card.addEventListener('click', refresh)
+
+</script>
+</html>
