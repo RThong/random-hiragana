@@ -500,7 +500,7 @@
     romaji:'po'
   }
 
-  const arr = [
+  const HIRAGANA_ARR = [
     a,
 i,
 u,
@@ -571,7 +571,10 @@ pa,
 pi,
 pu,
 pe,
-po]
+po
+]
+
+let arr = HIRAGANA_ARR.slice()
 
 const hiraganaDom = document.querySelector('.hiragana')
 const katakanaDom = document.querySelector('.katakana')
@@ -606,18 +609,24 @@ function refresh() {
 
   const _random = Math.floor(Math.random() * arr.length)
 
-  const obj = arr[_random]
+  const curResult = arr[_random]
 
   const curProp = propArr[Math.floor(Math.random() * 3)]
 
   propArr.forEach(item => {
     const _dom = DOM_MAP[item]
     _dom.style.opacity = 0
-    _dom.innerText = obj[item]
+    _dom.innerText = curResult[item]
   })
 
   DOM_MAP[curProp].style.opacity = 1
-  DOM_MAP[curProp].innerText = obj[curProp]
+  DOM_MAP[curProp].innerText = curResult[curProp]
+
+  arr.splice(arr.indexOf(curResult), 1)
+
+  if(arr.length === 0) {
+    arr = HIRAGANA_ARR.slice()
+  }
 }
 
 
